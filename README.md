@@ -10,4 +10,4 @@
 4. Run the application
    - npm run dev -- -p 3001
 
-   # we run the frontend on port 3001 because the backend also starts at port 3000 
+   we run the frontend on port 3001 because the backend also starts at port 3000 
