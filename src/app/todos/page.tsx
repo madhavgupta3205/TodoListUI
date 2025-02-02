@@ -21,6 +21,7 @@ export default function TodosPage() {
         const response = await api.post("/todos", { title: newTodo });
         setTodos([...todos, response.data]);
         setNewTodo("");
+        fetchTodos();
       }
       else{
         alert("enter a task");
@@ -81,19 +82,20 @@ export default function TodosPage() {
     }
   };
 
-  useEffect(() => {
-    const fetchTodos = async () => {
-      try {
-        const response = await api.get("/todos");
-        setTodos(response.data);
-      } catch (error) {
-        localStorage.removeItem("jwt");
-        router.push("/");
-      }
-    };
 
+  const fetchTodos = async () => {
+    try {
+      const response = await api.get("/todos");
+      setTodos(response.data);
+    } catch (error) {
+      localStorage.removeItem("jwt");
+      router.push("/");
+    }
+  };
+
+  useEffect(() => {
     fetchTodos();
-  }, [router, handleAddTodo]);
+  }, []);
 
   const handleLogout = () => {
     localStorage.removeItem("jwt");
